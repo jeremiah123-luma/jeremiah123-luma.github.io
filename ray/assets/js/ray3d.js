@@ -110,26 +110,42 @@ function init() {
     { sec: "#configure", anchor: "#config-slot", leave: "#configure", leaveStart: "bottom 75%", fx: 0.5, fy: 0.48, size: 0.9, rx: 1.15, ry: -0.6, rz: 0.2, sunI: 0.5, rimI: 0, exit: "down" },
     { sec: "#dawn",      anchor: "#dawn",        leave: "#dawn", leaveStart: "bottom 55%", fx: 0.5, fy: 0.12, size: 0.2, rx: 1.3, ry: -0.5, rz: 0.1, sunI: 2, rimI: 0, exit: "up" },
   ];
+  // Every frame, read where each section is on screen and derive the moment's progress from that. Only one moment owns
+  // the Ray at a time: the one most present (arrived and not yet left). Moments never overlap on the page, so a change
+  // of owner always happens while the Ray is out of frame.
+  const vh = () => innerHeight;
+  const clamp01 = (x) => Math.max(0, Math.min(1, x));
+  const frac = (s) => (parseFloat(String(s).split(" ")[1]) || 75) / 100;
+  function measure(m, i) {
+    const sec = document.querySelector(m.sec), lv = document.querySelector(m.leave) || sec;
+    if (!sec || !lv) return { enter: 0, leave: 1 };
+    const top = sec.getBoundingClientRect().top, bottom = lv.getBoundingClientRect().bottom;
+    const enter = i === 0 ? 1 : clamp01((vh() * 0.95 - top) / (vh() * 0.65));
+    const s0 = frac(m.leaveStart);
+    // the hero can't count as leaving before you've scrolled: on a phone its slot ends above the start line
+    const start = i === 0 ? Math.min(vh() * s0, bottom + scrollY) : vh() * s0;
+    const leave = clamp01((start - bottom) / (vh() * (s0 - 0.05)));
+    return { enter, leave };
+  }
   const state = { i: 0, enter: 1, leave: 0 };
-  if (window.gsap && window.ScrollTrigger) {
-    MOMENTS.forEach((m, i) => {
-      const el = document.querySelector(m.sec); if (!el) return;
-      if (i > 0) ScrollTrigger.create({ trigger: el, start: "top 95%", end: "top 30%", scrub: reduce ? false : 0.5,
-        onUpdate: (st) => { state.i = i; state.enter = st.progress; state.leave = 0; } });
-      ScrollTrigger.create({ trigger: document.querySelector(m.leave) || el, start: m.leaveStart || "bottom 75%", end: "bottom 5%", scrub: reduce ? false : 0.5,
-        onUpdate: (st) => { if (state.i === i || st.progress > 0) { state.i = i; state.enter = 1; state.leave = st.progress; } },
-        onLeaveBack: () => { if (state.i === i) state.leave = 0; } });
-    });
+  const smooth = { enter: 1, leave: 0 };
+  function updateState(dt) {
+    let best = 0, bestP = -1, got = null;
+    MOMENTS.forEach((m, i) => { const g = measure(m, i), pres = g.enter * (1 - g.leave); if (pres > bestP + 1e-4) { bestP = pres; best = i; got = g; } });
+    if (best !== state.i) { state.i = best; smooth.enter = got.enter; smooth.leave = got.leave; }   // switch while out of frame: no glide
+    state.enter = got.enter; state.leave = got.leave;
+    const k = reduce ? 1 : 1 - Math.exp(-dt * 14);
+    smooth.enter += (state.enter - smooth.enter) * k; smooth.leave += (state.leave - smooth.leave) * k;
   }
 
   function rectOf(sel) { const el = document.querySelector(sel); return el ? el.getBoundingClientRect() : { left: 0, top: 0, width: innerWidth, height: innerHeight }; }
   function toWorld(px, py) { return new THREE.Vector3(((px / innerWidth) * 2 - 1) * (visH / 2) * camera.aspect, (-(py / innerHeight) * 2 + 1) * (visH / 2), 0); }
-  const ease = (t) => 1 - Math.pow(1 - t, 3), easeIn = (t) => t * t * t;
+  const ease = (t) => 1 - Math.pow(1 - t, 3), easeIn = (t) => t * t * (3 - 2 * t);
 
   const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
   addEventListener("pointermove", (e) => { mouse.tx = (e.clientX / innerWidth - 0.5) * 2; mouse.ty = (e.clientY / innerHeight - 0.5) * 2; stage.classList.toggle("grab", overSlot(e)); }, { passive: true });
-  let lastY = scrollY, scrollV = 0;
-  addEventListener("scroll", () => { scrollV += (scrollY - lastY) * 0.0025; lastY = scrollY; }, { passive: true });
+  // scroll lean: a gentle tilt toward the scroll direction, from the scroll speed, eased in and out
+  let lastY = scrollY, lean = 0;
 
   let drag = null, vel = 0, userY = 0, userX = 0;
   function overSlot(e) { for (const sel of ["#hero-slot", "#config-slot"]) { const r = document.querySelector(sel)?.getBoundingClientRect(); if (r && e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) return true; } return false; }
@@ -141,26 +157,29 @@ function init() {
   const clock = new THREE.Clock();
   function frame() {
     requestAnimationFrame(frame);
-    clock.getDelta(); const T = clock.elapsedTime;
+    const dt = Math.min(clock.getDelta(), 0.05), T = clock.elapsedTime;
     if (!modelWidth) return;
+    updateState(dt);
     const m = MOMENTS[state.i], r = rectOf(m.anchor);
     const short = Math.min(r.width, r.height);
     let px = r.left + r.width * m.fx, py = r.top + r.height * m.fy, size = short * m.size;
-    if (phone()) { size = Math.min(size, r.height * 0.62, innerWidth * 0.66); py = r.top + r.height * 0.56; }
-    const a = ease(state.enter), l = easeIn(state.leave);
+    if (phone()) { size = Math.min(size, r.height * 0.55, innerWidth * 0.6); py = Math.max(r.top + r.height * 0.5, 84 + size * 0.75); }
+    const a = ease(smooth.enter), l = easeIn(smooth.leave);
     let scaleK = 0.6 + 0.4 * a;
-    py += (1 - a) * innerHeight * 0.45;
-    if (m.exit === "up") { py -= l * (innerHeight * 0.9 + size); scaleK *= 1 + l * 0.6; }
+    py += (1 - a) * innerHeight * 0.3;
+    if (m.exit === "up") { py -= l * (innerHeight * 0.6 + size * 0.6); scaleK *= 1 + l * 0.35; }
     else { py += l * innerHeight * 0.4; scaleK *= 1 - l * 0.55; }
     const worldW = (size * scaleK) / innerHeight * visH;
     root.position.copy(toWorld(px, py)); root.scale.setScalar(worldW / modelWidth);
     root.rotation.set(m.rx + l * (m.exit === "up" ? -0.6 : 0.4), m.ry + l * 0.8, m.rz);
-    root.visible = state.leave < 0.999 && py > -size && py < innerHeight + size;
+    root.visible = smooth.leave < 0.995 && smooth.enter > 0.005 && py > -size && py < innerHeight + size;
     sun.intensity = m.sunI * a; rim.intensity = m.rimI;
     ground.visible = state.i !== 2; ground.material.opacity = (1 - l) * a;
     mouse.x += (mouse.tx - mouse.x) * 0.06; mouse.y += (mouse.ty - mouse.y) * 0.06;
-    scrollV *= 0.9;
-    const sv = Math.max(-0.5, Math.min(0.5, scrollV));
+    const v = (scrollY - lastY) / Math.max(dt, 0.001); lastY = scrollY;
+    const target = reduce ? 0 : Math.max(-0.12, Math.min(0.12, v * 0.00008));
+    lean += (target - lean) * (1 - Math.exp(-dt * 6));
+    const sv = lean;
     tilt.rotation.set((reduce ? 0 : mouse.y * 0.18) + sv, reduce ? 0 : mouse.x * 0.28, -sv * 0.3);
     if (!drag) { vel *= 0.94; userY += vel; userX *= 0.9; }
     // hero: a slow continuous turn with a pause facing the camera (eased), so the glass, the strap and the clasp each get their moment
