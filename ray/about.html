@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>About Chargerless | Building the Ray Health Tracker</title>
+<meta name="description" content="Chargerless was founded in 2025 to build the first all-day wearable for everybody. Our first product, Ray, is a self-sustaining bracelet.">
+<meta name="theme-color" content="#FDFCF8">
+<link rel="icon" href="assets/img/logo.svg">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+  .about-hero{padding:150px 0 40px}
+  .about-hero h1{font-size:clamp(44px,6.4vw,92px);max-width:16ch}
+  .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:48px}
+  .strip img{aspect-ratio:1;object-fit:cover;border-radius:18px}
+  .strip img:nth-child(2){transform:translateY(28px)} .strip img:nth-child(4){transform:translateY(28px)}
+  .prose{max-width:720px;display:grid;gap:22px;font-size:clamp(17px,1.4vw,20px);line-height:1.6;color:var(--ink-2)}
+  .prose h2{font-size:clamp(30px,3.6vw,48px);color:var(--ink);margin-top:20px}
+  .prose p{text-wrap:pretty}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:start}
+  .two img{border-radius:var(--r);aspect-ratio:4/5;object-fit:cover;position:sticky;top:96px}
+  @media (max-width:900px){ .two{grid-template-columns:1fr} .two img{position:static;aspect-ratio:4/3} .strip{grid-template-columns:1fr 1fr} }
+</style>
+</head>
+<body class="no3d">
+<header class="nav solid" id="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Chargerless"><img src="assets/img/logo.svg" alt=""><img src="assets/img/wordmark.webp" alt="Chargerless"></a>
+    <nav class="navlinks" aria-label="Main"><a href="index.html#light">How it works</a><a href="index.html#specs">Specs</a><a href="index.html#reviews">Reviews</a><a href="index.html#faq">FAQ</a><a href="https://getchargerless.com/shop">Shop</a><a href="about.html" aria-current="page">About</a></nav>
+    <a class="btn" href="index.html#configure">Get Ray</a>
+    <button class="menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sheet"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+<div class="sheet" id="sheet"><button class="x" type="button" aria-label="Close">✕</button><a href="index.html#light">How it works</a><a href="index.html#specs">Specs</a><a href="index.html#reviews">Reviews</a><a href="index.html#faq">FAQ</a><a href="https://getchargerless.com/shop">Shop</a><a href="about.html">About</a><a href="https://getchargerless.com/contact">Contact</a><a href="index.html#configure">Get Ray</a></div>
+
+<main class="content">
+<section class="about-hero">
+  <div class="wrap">
+    <span class="eyebrow rv">About Us</span>
+    <h1 class="rv d1" style="margin-top:16px">Chargerless was founded in 2025 to build the first all-day wearable for everybody.</h1>
+    <div class="strip rv d2">
+      <img src="assets/img/goldleather-handsclasped.jpg" alt="Chargerless progress">
+      <img src="assets/img/coffee-square.webp" alt="Chargerless progress">
+      <img src="assets/img/rocks.webp" alt="Chargerless progress">
+      <img src="assets/img/windswept2.webp" alt="Chargerless progress">
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:40px">
+  <div class="wrap two">
+    <div class="prose">
+      <p class="rv">Our first product, Ray, is a self-sustaining bracelet that does everything we expect from a fitness tracker without any of the hassle of charging. Oh, and it's the lightest and smallest fitness tracker out there.</p>
+      <p class="rv">We're putting the finishing touches on Ray now, and Batch 3 ships in December 2026–January 2027. You can order now on our <a class="link" href="https://getchargerless.com/shop">store</a>.</p>
+      <h2 class="rv">Why'd you make this?</h2>
+      <p class="rv">Hi, my name is Andy, I'm the founder of Chargerless. I've been wearing a fitness tracker for most of my life, and I think they're the best way to track my health, sleep, and exercise goals. But recently, it's just started getting annoying: it's dead when I want to see it, I need to remember to plug it in every other night, and it's big and ugly on my wrist.</p>
+      <p class="rv">My background is in engineering, so I started making my own wearable to solve these problems. My ideal tracker is so tiny and lightweight that I wouldn't notice I was wearing it, and minimal enough to go with any outfit. Even then, I didn't want to give up any quality — my device would need world-class health sensors just like the other devices I was used to: heart rate, HRV, sleep, body temperature, and much more. But why hadn't anyone done this before?</p>
+      <p class="rv">Today's wearables are big, and I realized they all shared something that made them big: the battery. Because these wearables couldn't charge themselves, they needed to carry all their power with them like a big backpack. But if we could add a way for our wearable to collect power on its own, like a small solar panel, then we could shrink the battery and keep all the features we care about. This inspired me to start Chargerless.</p>
+      <h2 class="rv">When can I get one?</h2>
+      <p class="rv">We've started manufacturing Ray, and Batch 3 ships in December 2026–January 2027. Orders are open now and fully refundable any time before shipping.</p>
+      <p class="rv"><a class="btn" href="index.html#configure">Get Ray <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+    </div>
+    <img class="rv d1" src="assets/img/workshop-cleanup.webp" alt="Ray prototypes and tools in the Chargerless workshop">
+  </div>
+</section>
+
+<section class="news" id="newsletter">
+  <div class="wrap rv">
+    <img src="assets/img/biggreen.jpg" alt="Ray in Sunlit Gold and Cognac Leather resting on the workshop bench">
+    <div class="tx">
+      <span class="eyebrow">From the workshop</span>
+      <h2 style="font-size:clamp(30px,3.4vw,46px)">Follow the build.</h2>
+      <p class="lede">See production updates, Batch 3 shipping news, and occasional notes from the workshop.</p>
+      <form onsubmit="return false"><input type="email" placeholder="Your email" aria-label="Email"><button class="btn" type="submit">Get updates</button></form>
+      <p class="fine">No spam, no filler. Unsubscribe any time.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div><a class="brand" href="index.html"><img src="assets/img/logo.svg" alt=""><img src="assets/img/wordmark.webp" alt="Chargerless"></a><p style="margin-top:14px;color:var(--muted)">A health tracker powered by light</p></div>
+      <div><h4>Explore</h4><ul><li><a href="https://getchargerless.com/technology">How it works</a></li><li><a href="https://getchargerless.com/faq">FAQ</a></li><li><a href="https://getchargerless.com/guides">Health tracker guides</a></li><li><a href="https://hub.getchargerless.com/">Hub</a></li><li><a href="https://getchargerless.com/shop">Shop</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="mailto:team@getchargerless.com">team@getchargerless.com</a></li><li><a href="https://getchargerless.com/help#help-search">Help &amp; search</a></li><li><a href="https://getchargerless.com/contact">Contact</a></li><li><a href="about.html">About</a></li><li><a href="https://getchargerless.com/privacy">Privacy</a></li><li><a href="https://getchargerless.com/terms">Terms &amp; Conditions</a></li></ul></div>
+      <div><h4>Social</h4><ul><li><a href="https://x.com/chargerlessxyz">Twitter / X</a></li><li><a href="https://www.linkedin.com/company/chargerless">LinkedIn</a></li><li><a href="https://www.facebook.com/61575350273827">Facebook</a></li></ul></div>
+    </div>
+    <div class="bottom"><span>© 2026 Chargerless Inc. All rights reserved. San Francisco, California.</span><span>Redesign concept by Jeremy Sleman · not the live site</span></div>
+  </div>
+</footer>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

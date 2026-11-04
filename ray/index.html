@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ray Solar-Powered Health Tracker | Chargerless</title>
+<meta name="description" content="Ray is a solar-powered fitness band that charges when you go outside. Seven grams, no subscription, 60 days of battery in darkness.">
+<meta name="theme-color" content="#FDFCF8">
+<link rel="icon" href="assets/img/logo.svg">
+<link rel="stylesheet" href="assets/css/site.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Chargerless"><img src="assets/img/logo.svg" alt=""><img src="assets/img/wordmark.webp" alt="Chargerless"></a>
+    <nav class="navlinks" aria-label="Main">
+      <a href="#light">How it works</a><a href="#specs">Specs</a><a href="#reviews">Reviews</a><a href="#faq">FAQ</a><a href="https://getchargerless.com/shop">Shop</a><a href="https://getchargerless.com/about">About</a>
+    </nav>
+    <a class="btn" href="#configure">Get Ray</a>
+    <button class="menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sheet"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+<div class="sheet" id="sheet">
+  <button class="x" type="button" aria-label="Close">✕</button>
+  <a href="#light">How it works</a><a href="#specs">Specs</a><a href="#reviews">Reviews</a><a href="#faq">FAQ</a><a href="https://getchargerless.com/shop">Shop</a><a href="https://getchargerless.com/about">About</a><a href="https://getchargerless.com/contact">Contact</a><a href="#configure">Get Ray</a>
+</div>
+
+<div id="stage" aria-hidden="true"></div>
+
+<main class="content">
+
+<!-- hero -->
+<section class="hero" id="reserve" data-pose="hero">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="copy">
+      <span class="eyebrow rv">Ray · Batch 3 now open</span>
+      <h1 class="rv d1">The health tracker that runs on light</h1>
+      <p class="lede rv d2">Ray is a solar-powered fitness band that charges when you go outside. Improve your sleep, log your steps and activity, and track your heart health — lots of features in a tiny package.</p>
+      <p class="lede rv d2">At seven grams and no subscription, the Ray is what other trackers wish they could be: your effortless health companion.</p>
+      <div class="ctas rv d3">
+        <a class="btn" href="#configure">Get Ray — from $219 <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="link" href="#light">See how Ray works.</a>
+      </div>
+    </div>
+    <div class="slot" id="hero-slot">
+      <img class="still" src="assets/img/chargerlessnewhero.webp" alt="Ray in Sunlit Gold with a Cognac Leather band, standing upright">
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="stats rv">
+    <div><b>7 grams</b><span>barely there</span></div>
+    <div><b>1 minute</b><span>of sunlight/day</span></div>
+    <div><b>60 days</b><span>battery life in darkness</span></div>
+    <div><b>$0</b><span>subscription</span></div>
+  </div>
+</div>
+
+<div class="ticker" aria-hidden="true"><div class="row">
+  <span>7 grams</span><span>1 minute of sun a day</span><span>60 days in darkness</span><span>No charging port</span><span>IP68</span><span>$0 subscription</span><span>Made in America</span><span>Designed to last 10+ years</span><span>Apple Health and Google Health Connect</span><span>60-day returns</span>
+  <span>7 grams</span><span>1 minute of sun a day</span><span>60 days in darkness</span><span>No charging port</span><span>IP68</span><span>$0 subscription</span><span>Made in America</span><span>Designed to last 10+ years</span><span>Apple Health and Google Health Connect</span><span>60-day returns</span>
+</div></div>
+
+<section class="bleed" data-pose="bleed" aria-label="Ray worn three ways">
+  <img loading="lazy" decoding="async" class="rv" src="assets/img/gen-three-friends.jpg" alt="Three friends with linked arms, each wearing Ray: gold on a gold link band, silver on a black leather band, gold on a cognac leather band">
+</section>
+
+<!-- light -->
+<section class="light" id="light" data-pose="light">
+  <div class="wrap grid2">
+    <div>
+      <div class="head">
+        <span class="eyebrow rv">How it works</span>
+        <h2 class="rv d1">One minute of sun. One day of power</h2>
+        <p class="lede rv d2">The Ray is missing a charging port, because there's nothing to plug in! A tiny solar cell under the glass keeps it running from the light you already live in. It charges the same way you tan: by going outside.</p>
+        <p class="lede rv d2">Go two months without seeing the sun, and it'll still be running when you come back.</p>
+      </div>
+      <div class="tri rv d3">
+        <div><b>1 min</b><span>of direct sunlight a day runs it forever</span></div>
+        <div><b>60 days</b><span>battery life in total darkness</span></div>
+        <div><b>10+ yrs</b><span>designed lifespan</span></div>
+      </div>
+    </div>
+    <div class="dayl rv" id="dayl" role="img" aria-label="A grid of 24 rows of 60 marks, one per minute of the day. One mark at midday is lit: one minute of sun powers all 1,440 minutes.">
+      <div class="rows" id="dayl-rows"></div>
+      <div class="cap"><span>Each mark is a minute. Each row is an hour.</span><span class="tag"><i></i>1 min of sun</span></div>
+      <p class="fine" style="margin-top:14px"><b style="color:var(--ink)">1 minute of sun</b> powers all 1,440 minutes of your day. Outdoor sunlight only. The one-minute figure refers to direct sunlight outdoors.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="rail rv">
+      <img src="assets/img/hand-in-sun.jpg" alt="A hand held up in direct sunlight, wearing Ray" loading="lazy" decoding="async">
+      <img src="assets/img/hand-sky.webp" alt="A wrist wearing Ray against an open sky" loading="lazy" decoding="async">
+      <img src="assets/img/macro-gold-leather.jpg" alt="Close-up of Ray in Sunlit Gold on a Cognac Leather band" loading="lazy" decoding="async">
+      <img src="assets/img/coffee-silver.webp" alt="Ray in Moonlit Silver worn while holding a coffee" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<!-- features -->
+<section class="features" id="features" data-pose="features">
+  <div class="wrap">
+    <div class="top">
+      <div class="head" style="margin:0">
+        <span class="eyebrow rv">Every morning</span>
+        <h2 class="rv d1">Wake up to a morning brief, every morning</h2>
+        <p class="lede rv d2">The Ray's research-grade sensors are running around the clock to measure the biosignals that a sleep lab looks for and prepares you for the day ahead. No tapping, no syncing, no thinking.</p>
+        <div class="integ rv d3"><img loading="lazy" decoding="async" src="assets/img/health-connect.png" alt=""><span>Integrated with Google Health and Apple Health. App available on Android and iOS.</span></div>
+      </div>
+      <div class="phones" id="phones">
+        <figure class="iphone p1 rv d1" data-speed="-0.12"><div class="screen"><img loading="lazy" decoding="async" src="assets/img/app-today.webp" alt="Ray on iPhone: Today screen with a solar-charge dial, heart rate, steps and sleep"></div><i class="island"></i><i class="shine"></i></figure>
+        <figure class="iphone p2 rv d3" data-speed="0.1"><div class="screen"><img loading="lazy" decoding="async" src="assets/img/app-sleep.webp" alt="Ray on iPhone: sleep detail with an overnight heart-rate and temperature chart"></div><i class="island"></i><i class="shine"></i></figure>
+      </div>
+    </div>
+    <div class="cards" style="margin-top:56px">
+      <a class="card rv" href="#specs"><img loading="lazy" decoding="async" src="assets/img/gen-sleep.jpg" alt="A woman asleep in white linen bedding, wearing Ray in Sunlit Gold on a Cognac Leather band"><span class="t">Sleep<small>stages, timing, and quality</small></span></a>
+      <a class="card rv d1" href="#specs"><img loading="lazy" decoding="async" src="assets/img/gen-lacing-shoes.jpg" alt="A man lacing his running shoes on a tailgate at sunrise, wearing Ray on a Carbon Silicone band"><span class="t">Steps &amp; activity<small>steps, pace, and active minutes</small></span></a>
+      <a class="card rv d2" href="#specs"><img loading="lazy" decoding="async" src="assets/img/gen-car-door.jpg" alt="A man stepping out of a car into golden hour light, wearing Ray in Moonlit Silver on a Carbon Silicone band"><span class="t">Light &amp; sun<small>daylight and your body clock</small></span></a>
+    </div>
+    <div class="feat">
+      <div class="rv"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><div><h3>Sleep</h3><p>stages, timing, and quality</p></div></div>
+      <div class="rv d1"><svg viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg><div><h3>Heart rate &amp; HRV</h3><p>resting heart rate and overnight HRV</p></div></div>
+      <div class="rv d2"><svg viewBox="0 0 24 24"><path d="M14 14.8V4a2 2 0 0 0-4 0v10.8a4 4 0 1 0 4 0z"/></svg><div><h3>Body temperature</h3><p>nightly shifts, NIST-traceable</p></div></div>
+      <div class="rv"><svg viewBox="0 0 24 24"><circle cx="13" cy="4" r="2"/><path d="M9 21l2-6-3-3 2-5 4 3h3M7 12H4"/></svg><div><h3>Steps &amp; activity</h3><p>steps, pace, and active minutes</p></div></div>
+      <div class="rv d1"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6L19 19M5 19l1.4-1.4M17.6 6.4L19 5"/></svg><div><h3>Light &amp; sun</h3><p>daylight and your body clock</p></div></div>
+      <div class="rv d2"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><h3>Readiness</h3><p>sleep, HRV, and temperature in one score</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- configurator -->
+<section class="config" id="configure" data-pose="config">
+  <div class="wrap">
+    <div>
+      <div class="slot" id="config-slot">
+        <img loading="lazy" decoding="async" class="still" id="config-still" src="assets/img/ray-sunlit-gold-cognac-leather.jpg" alt="Ray in the selected case and band">
+      </div>
+      <div class="mosaic rv">
+        <img loading="lazy" decoding="async" src="assets/img/picnic-cherries.jpg" alt="A woman wearing Ray in Sunlit Gold and Cognac Leather reaches for cherries">
+        <img loading="lazy" decoding="async" src="assets/img/wet.jpg" alt="Ray in Sunlit Gold beaded with water droplets">
+        <img loading="lazy" decoding="async" src="assets/img/ray-black-band-blue-sky.jpg" alt="Ray worn on a wrist held up to a bright open sky">
+      </div>
+    </div>
+    <div class="panel">
+      <div class="head" style="margin:0;gap:12px">
+        <span class="eyebrow rv">Customize your Ray</span>
+        <h2 class="rv d1">Ray<br><em>Powered by light.</em></h2>
+        <p class="lede rv d2">Gold or silver, three bands. Choose the finish and price that feel right.</p>
+        <p class="fine rv d2">Any color you like, as long as it's gold or silver.</p>
+        <h3 class="rv d2">The health tracking wristband with everything you need</h3>
+      </div>
+      <div class="opt rv" data-opt="case"><div class="lab"><span>Case</span><span>gold or silver</span></div>
+        <div class="row">
+          <button class="choice" type="button" data-v="silver" aria-pressed="false"><i class="swatch-silver"></i><b>Moonlit Silver</b><span>Clean stainless look</span></button>
+          <button class="choice" type="button" data-v="gold" aria-pressed="true"><i class="swatch-gold"></i><b>Sunlit Gold</b><span>Warm jewelry finish</span><small>+$30</small></button>
+        </div></div>
+      <div class="opt rv" data-opt="band"><div class="lab"><span>Band</span><span>swappable any time</span></div>
+        <div class="row three">
+          <button class="choice" type="button" data-v="cognac" aria-pressed="true"><i class="swatch-cognac"></i><b>Cognac Leather</b><span>Warm, full-grain leather</span></button>
+          <button class="choice" type="button" data-v="onyx" aria-pressed="false"><i class="swatch-onyx"></i><b>Onyx Leather</b><span>Black, full-grain leather</span></button>
+          <button class="choice" type="button" data-v="carbon" aria-pressed="false"><i class="swatch-carbon"></i><b>Carbon Silicone</b><span>Soft, sweatproof silicone</span></button>
+        </div></div>
+      <div class="opt rv" data-opt="size"><div class="lab"><span>Size</span><span>choose your fit</span></div>
+        <div class="row">
+          <button class="choice" type="button" data-v="sm" aria-pressed="true"><b>Small / Medium</b><span>150–180 mm · 5.75–7 in</span></button>
+          <button class="choice" type="button" data-v="ml" aria-pressed="false"><b>Medium / Large</b><span>170–200 mm · 6.7–7.9 in</span></button>
+        </div>
+        <p class="fine">Lengths represent the band + Ray, so match it with your wrist circumference. Between sizes? We recommend Small / Medium.</p></div>
+      <div class="price rv">
+        <span class="eyebrow">Early supporter price</span>
+        <div class="big"><b id="price">$249</b></div>
+        <ul><li>One-time purchase, no subscription ever</li><li>Free shipping</li><li>Longest battery life ever</li><li>Cancel anytime for a full refund</li></ul>
+        <a class="btn sun" id="buy" href="https://getchargerless.com/shop">Get Ray <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <details style="margin-top:6px"><summary class="fine" style="cursor:pointer">Got a promo code?</summary>
+          <form class="promo" onsubmit="return false" style="margin-top:10px"><input placeholder="Promo code" aria-label="Promo code"><button type="button">Apply</button></form>
+          <p class="fine" style="margin-top:8px"><b>SUNNY</b> applied — your Vacation SPF 50 mini ships in the box.</p></details>
+        <p class="batch" style="margin-top:12px">Batch 3 · Ships in December 2026–January 2027.<br>Cancel anytime before shipment for a full refund.</p>
+        <div class="pay"><img loading="lazy" decoding="async" src="assets/img/payment_visa.svg" alt="Visa"><img loading="lazy" decoding="async" src="assets/img/payment_mastercard.svg" alt="Mastercard"><img loading="lazy" decoding="async" src="assets/img/payment_amex.svg" alt="American Express"><img loading="lazy" decoding="async" src="assets/img/payment_applepay.svg" alt="Apple Pay"><img loading="lazy" decoding="async" src="assets/img/payment_googlepay.svg" alt="Google Pay"><span class="fine">Secure checkout by Stripe</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- daylight -->
+<section class="daylight" id="daylight" data-pose="daylight">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow rv">Charge it on the go</span><h2 class="rv d1">Charge it on the go</h2></div>
+    <div class="cards">
+      <a class="card rv" href="#light"><img loading="lazy" decoding="async" src="assets/img/ray-cognac-leather-sunlit-blanket.jpg" alt="Ray worn on a cognac leather band, resting on a sunlit blanket"><span class="t">A nap in the sun.<small>Still counts.</small></span></a>
+      <a class="card rv d1" href="#light"><img loading="lazy" decoding="async" src="assets/img/ray-black-band-blue-sky.jpg" alt="Ray worn on a wrist held up to a bright open sky"><span class="t">Open sky.<small>A minute is plenty.</small></span></a>
+      <a class="card rv d2" href="#light"><img loading="lazy" decoding="async" src="assets/img/cuff-gold.jpg" alt="Ray in Sunlit Gold worn on an Onyx Leather band, resting over a red park bench in the sun"><span class="t">Corduroy and full sun.<small>A fast charge.</small></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- lightness -->
+<section class="lightness" id="lightness" data-pose="side">
+  <div class="wrap grid2">
+    <img loading="lazy" decoding="async" class="rv" src="assets/img/jewelry-silver.jpg" alt="Ray in Moonlit Silver worn like jewelry on a steel link band">
+    <div>
+      <div class="head" style="margin-bottom:0">
+        <span class="eyebrow rv">Lightness</span>
+        <h2 class="rv d1">So light you'll forget you're wearing it</h2>
+        <p class="lede rv d2">The thinnest, lightest tracker in the world, Ray looks good on your wrist and stays out of your day.</p>
+      </div>
+      <div class="spec rv d3">
+        <div><span>Weight</span><b>7 grams</b></div><div><span>Case</span><b>Machined steel</b></div>
+        <div><span>Finish</span><b>Mirror-polished</b></div><div><span>Water &amp; dust</span><b>IP68</b></div>
+        <div><span>Charging port</span><b>None</b></div><div><span>Dark reserve</span><b>60 days</b></div>
+      </div>
+      <p class="fine" style="margin-top:12px">Ray in Moonlit Silver.</p>
+    </div>
+  </div>
+</section>
+
+<!-- night -->
+<section class="night" id="night" data-pose="night">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow rv" style="color:var(--sun)">Battery</span>
+      <h2 class="rv d1">2-month battery life</h2>
+      <p class="lede rv d2">Ray banks light. A full charge can power 60+ days of tracking even in total darkness — every heartbeat, every night of sleep, for two months straight.</p>
+    </div>
+    <p class="eyebrow" style="color:#857B6E">Days on one charge</p>
+    <div class="bars rv" id="bars">
+      <div class="bar"><span>Apple Watch</span><div class="tr"><i style="--w:1.7%"></i></div><span class="v">1 day</span></div>
+      <div class="bar"><span>Oura</span><div class="tr"><i style="--w:11.7%"></i></div><span class="v">4–7 days</span></div>
+      <div class="bar"><span>WHOOP</span><div class="tr"><i style="--w:23.3%"></i></div><span class="v">14+ days</span></div>
+      <div class="bar ray"><span>Ray</span><div class="tr"><i style="--w:100%"></i></div><span class="v">60+ days</span></div>
+      <div class="axis"><span></span><div><span>1 wk</span><span>2 wks</span><span>1 mo</span><span>2 mo</span></div></div>
+    </div>
+    <p class="fine">Ray in total darkness, with no sun at all. Others in typical use, from the comparison below.</p>
+    <div class="facts">
+      <div class="rv"><b>None</b><span>charging port. Fully encapsulated and sealed for life.</span></div>
+      <div class="rv d1"><b>10+ yrs</b><span>designed lifespan, with a hardware warranty.</span></div>
+      <div class="rv d2"><b>&lt;2 g</b><span>of non-recyclable parts per device.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- compare -->
+<section class="compare" id="compare" data-pose="compare">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow rv">Compared</span><h2 class="rv d1">Same tracking. No charger, no subscription</h2></div>
+    <div class="scroll rv">
+      <table>
+        <thead><tr><th>Spec</th><th>Ray</th><th>WHOOP 5.0 / MG</th><th>Apple Watch</th><th>Oura</th></tr></thead>
+        <tbody>
+          <tr><td>Charging</td><td>Sunlight</td><td>14+ days per charge</td><td>Daily</td><td>Every 4 to 7 days</td></tr>
+          <tr><td>Subscription</td><td>$0</td><td>$199–$359/year</td><td>Optional</td><td>$6 / mo</td></tr>
+          <tr><td>Weight</td><td>7 g</td><td>About 26.5 g (5.0)</td><td>~38 g</td><td>~5 g</td></tr>
+          <tr><td>Designed to last</td><td>10+ years</td><td>Not specified</td><td>~3 years</td><td>~3 years</td></tr>
+          <tr><td>5-year cost</td><td>$219</td><td>$995–$1,795</td><td>$800+</td><td>$660</td></tr>
+          <tr><td>Looks like</td><td>Jewelry</td><td>A fitness band</td><td>A computer</td><td>A ring</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fine">WHOOP facts checked September 7, 2026: <a href="https://www.whoop.com/us/en/peak/">manufacturer specifications</a>. Five years at current US annual list prices: One $199/year, Peak $239/year, Life $359/year. One and Peak include WHOOP 5.0; Life includes WHOOP MG. Promotions, taxes, future price changes and replacement hardware excluded. Other competitor figures are 2026 estimates. Apple Watch five-year cost assumes one mid-cycle replacement.</p>
+    <p style="margin-top:28px"><a class="link" href="#configure">Build yours in the light →</a></p>
+  </div>
+</section>
+
+<!-- batch -->
+<section class="batch" id="style" data-pose="style">
+  <div class="wrap grid2">
+    <div>
+      <div class="head" style="margin-bottom:0">
+        <span class="eyebrow rv">Now shipping</span>
+        <h2 class="rv d1">Batch 3 is now open</h2>
+        <p class="lede rv d2">Order your Ray from Batch 3, shipping December 2026–January 2027. Made in America, with a hardware warranty and 60-day returns after delivery.</p>
+      </div>
+      <p class="eyebrow" style="margin-top:28px">Customize your band</p>
+      <div class="chips rv d3" id="bandchips">
+        <button class="chip" type="button" data-v="cognac" aria-pressed="true"><i class="swatch-cognac"></i>Cognac Leather</button>
+        <button class="chip" type="button" data-v="onyx" aria-pressed="false"><i class="swatch-onyx"></i>Onyx Leather</button>
+        <button class="chip" type="button" data-v="carbon" aria-pressed="false"><i class="swatch-carbon"></i>Carbon Silicone</button>
+      </div>
+      <a class="btn rv d3" href="#configure">Get Ray</a>
+    </div>
+    <div class="pair rv">
+      <img loading="lazy" decoding="async" src="assets/img/gen-mom-toddler.jpg" alt="A mother laughing with her toddler in a sunlit doorway, wearing Ray in Sunlit Gold on a Cognac Leather band">
+      <img loading="lazy" decoding="async" src="assets/img/cuff-gold.jpg" alt="An arm rests over a red park bench in the sun, wearing Ray in Sunlit Gold on an Onyx Leather band">
+    </div>
+  </div>
+</section>
+
+<!-- specs -->
+<section class="specs" id="specs" data-pose="specs">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow rv">Specs</span><h2 class="rv d1">The Tech Specs</h2></div>
+    <div class="layout">
+    <div class="groups">
+      <div class="g rv"><h3>Biosignals</h3><ul><li>Body temperature trends</li><li>Light &amp; sun exposure</li><li>Heart rate</li><li>HRV</li><li>Steps</li><li>Activity</li></ul></div>
+      <div class="g rv d1"><h3>Battery</h3><ul><li>60 days in total darkness</li><li>Runs forever on one minute of direct sun a day</li><li>No charging port</li></ul></div>
+      <div class="g rv d2"><h3>Hardware</h3><ul><li>7 grams</li><li>11 mm polished steel case</li><li>IP68 water and dust resistant</li></ul></div>
+      <div class="g rv"><h3>Durability</h3><ul><li>Waterproof and dustproof to IP68</li><li>Polished steel case that wears in naturally</li><li>Under 2 g of non-recyclable parts per device</li></ul></div>
+      <div class="g rv d1"><h3>Built to last</h3><ul><li>Designed to last 10+ years</li><li>Fully encapsulated and sealed for life</li><li>Hardware warranty</li></ul></div>
+      <div class="g rv d2"><h3>Connectivity</h3><ul><li>iPhone and Android companion app</li><li>Apple Health and Google Health Connect integration</li><li>Low-power radio keeps EMF low and your phone battery high</li></ul></div>
+    </div>
+    <div class="photo rv d1"><img src="assets/img/gold-leather-clasped.webp" alt="Hands clasped, wearing Ray in Sunlit Gold on a Cognac Leather band" decoding="async"></div>
+    </div>
+    <h3 style="margin-top:48px">In the box</h3>
+    <div class="box">
+      <figure class="rv"><img loading="lazy" decoding="async" src="assets/img/inbox-ray-gold-cognac.webp" alt="Ray in Sunlit Gold on a Cognac Leather band, on a display stand"><figcaption><b>Ray</b><span>Ray, in the case and band you chose</span></figcaption></figure>
+      <figure class="rv d1"><img loading="lazy" decoding="async" src="assets/img/inbox-band-leather.webp" alt="A leather Ray band with a steel buckle"><figcaption><b>Your band</b><span>A lifetime of app updates</span><span>Charger not included.</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- reviews -->
+<section class="reviews" id="reviews" data-pose="reviews">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow rv">Reviews</span><h2 class="rv d1">What the people are saying</h2></div>
+    <div class="quotes">
+      <blockquote class="quote rv"><p>You created a product that aligns with going outside. The most primitive activity of man.</p><cite><b>Raghava U.</b>Verified purchaser</cite></blockquote>
+      <blockquote class="quote rv d1"><p>“Your hardware passes the invisibility test. I forget it's on.”</p><cite><b>Bryce H.</b>Verified purchaser</cite></blockquote>
+    </div>
+    <div class="wearers rv d2">
+      <figure><img loading="lazy" decoding="async" src="assets/img/wearers_bryce.jpg" alt="Bryce H. wearing Ray"><figcaption>Bryce H.</figcaption></figure><figure><img loading="lazy" decoding="async" src="assets/img/wearers_jane.jpg" alt="Jane D. wearing Ray"><figcaption>Jane D.</figcaption></figure><figure><img loading="lazy" decoding="async" src="assets/img/wearers_vai.jpg" alt="Vai C. wearing Ray"><figcaption>Vai C.</figcaption></figure><figure><img loading="lazy" decoding="async" src="assets/img/wearers_olivia.jpg" alt="Olivia L. wearing Ray"><figcaption>Olivia L.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- faq -->
+<section class="faq" id="faq" data-pose="faq">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow rv">FAQ</span><h2 class="rv d1">Questions, answered</h2></div>
+    <details><summary>Does it really never need charging?</summary><div class="a"><p>Ray charges using outdoor sunlight only. About one minute of direct sunlight outdoors per day can sustain operation. A full charge provides about 60 days in total darkness, depending on settings and use.</p><a class="link" href="https://getchargerless.com/help/how-does-solar-charging-work">How solar charging works →</a></div></details>
+    <details><summary>What if I’m indoors most of the day?</summary><div class="a"><p>Indoor lighting barely charges Ray unless you’re right next to a window. It does charge outdoors in shade or cloud, and through the window on a car commute. A full charge lasts about 60 days in total darkness, so a little time outside every so often keeps it topped up.</p><a class="link" href="https://getchargerless.com/help/how-does-solar-charging-work">Best light for charging →</a></div></details>
+    <details><summary>Is Ray a low-EMF tracker?</summary><div class="a"><p>Yes. Ray is one of the lowest-EMF trackers you can wear. It charges from light as direct current, so there’s no wireless charging coil and no battery pack charging on your wrist. It uses very little power, its Bluetooth isn’t on all the time, and you can set it to stay off most of the day and sync only when you want your data. Ray does use Bluetooth Low Energy when it syncs, so it isn’t EMF-free.</p><a class="link" href="https://getchargerless.com/best-fitness-tracker-low-emf">Our low-EMF guide →</a></div></details>
+    <details><summary>Is it waterproof?</summary><div class="a"><p>Yes, fully waterproof and dustproof to IP68. Swim in it, shower in it, sleep in it. There is no charging port to fail.</p><a class="link" href="https://getchargerless.com/help/is-ray-waterproof">Water and band care →</a></div></details>
+    <details><summary>Can I get a refund on my order?</summary><div class="a"><p>Yes. Cancel any direct Ray order at any time before shipment for a full refund. After delivery, try Ray and return it within 60 calendar days for a full refund of the product price. Ordinary trial use is allowed and there is no restocking fee. Email team@getchargerless.com to start a cancellation or return. Customers normally pay return shipping; see our <a href="https://getchargerless.com/terms#returns">return terms</a> for instructions and conditions.</p><a class="link" href="https://getchargerless.com/terms#returns">Return and refund details →</a></div></details>
+    <details><summary>When will my order ship?</summary><div class="a"><p>New orders are for Batch 3, which ships in December 2026–January 2027. We’ll send updates as shipping approaches.</p><a class="link" href="https://getchargerless.com/help/shipping-and-delivery">Shipping and delivery →</a></div></details>
+    <details><summary>Is there a subscription?</summary><div class="a"><p>No. $219 once, then it is yours. Lifetime app updates and a hardware warranty are included.</p><a class="link" href="https://getchargerless.com/compare">How Ray’s cost compares →</a></div></details>
+  </div>
+</section>
+
+<!-- newsletter -->
+<section class="news" id="newsletter" data-pose="news">
+  <div class="wrap rv">
+    <img loading="lazy" decoding="async" src="assets/img/biggreen.jpg" alt="Ray in Sunlit Gold and Cognac Leather resting on the workshop bench">
+    <div class="tx">
+      <span class="eyebrow">Follow the build</span>
+      <h2 style="font-size:clamp(30px,3.4vw,46px)">See the production updates, feature rollouts, and the occasional note from the workshop</h2>
+      <form onsubmit="return false"><input type="email" placeholder="Your email" aria-label="Email"><button class="btn" type="submit">Get updates</button></form>
+      <p class="fine">No spam, no filler. Unsubscribe any time</p>
+    </div>
+  </div>
+</section>
+
+<!-- dawn -->
+<section class="dawn" id="dawn" data-pose="dawn">
+  <div class="wrap">
+    <h2 class="rv">Now that you've read the whole page,<br>your Ray could've charged twice.</h2>
+    <p class="lede rv d1" style="text-align:center">Compared to other trackers, all the Ray is missing is the subscription and the dead battery.<br>A one-time cost for a decade of health insights.</p>
+    <a class="btn rv d2" href="#configure">Get Ray <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <p class="fine rv d3">Batch 3 · Ships in December 2026–January 2027</p>
+  </div>
+</section>
+
+<!-- founder -->
+<section class="founder" id="founder" data-pose="founder" style="padding-top:0">
+  <div class="wrap">
+    <div class="card2 rv">
+      <img loading="lazy" decoding="async" src="assets/img/founder.jpg" alt="Andy Kong, founder of Chargerless, wearing Ray outdoors">
+      <div class="tx">
+        <span class="eyebrow" style="color:var(--sun)">From the founder</span>
+        <blockquote>“A few years ago I overheard someone on the train say they skipped their morning run because their Apple Watch was dead. That's when it clicked: these devices have gone too far. Ray is what a tracker should be: small, beautiful, self-powering, and yours forever.”</blockquote>
+        <cite><b>Andy Kong</b>Founder, Chargerless · MIT · ex-Google</cite>
+        <a class="btn" href="#configure">Get Ray</a>
+        <span class="fine" style="color:#857B6E">Andy Kong, wearing Ray.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt=""><img src="assets/img/wordmark.webp" alt="Chargerless"></a>
+        <p style="margin-top:14px;color:var(--muted)">A health tracker powered by light</p>
+        <div class="sunscreen"><img loading="lazy" decoding="async" src="assets/img/vacation-classic-spf50.webp" alt=""><div><b>Want free sunscreen?</b><span>We’ll send you a code — use it at checkout and a Vacation SPF 50 mini ships with your Ray order. We’ll also send build updates now and then. One code per order · Unsubscribe any time</span></div></div>
+      </div>
+      <div><h4>Explore</h4><ul><li><a href="https://getchargerless.com/technology">How it works</a></li><li><a href="https://getchargerless.com/faq">FAQ</a></li><li><a href="https://getchargerless.com/guides">Health tracker guides</a></li><li><a href="https://hub.getchargerless.com/">Hub</a></li><li><a href="https://getchargerless.com/shop">Shop</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="mailto:team@getchargerless.com">team@getchargerless.com</a></li><li><a href="https://getchargerless.com/help#help-search">Help &amp; search</a></li><li><a href="https://getchargerless.com/contact">Contact</a></li><li><a href="https://getchargerless.com/about">About</a></li><li><a href="https://getchargerless.com/privacy">Privacy</a></li><li><a href="https://getchargerless.com/terms">Terms &amp; Conditions</a></li></ul></div>
+      <div><h4>Social</h4><ul><li><a href="https://x.com/chargerlessxyz">Twitter / X</a></li><li><a href="https://www.linkedin.com/company/chargerless">LinkedIn</a></li><li><a href="https://www.facebook.com/61575350273827">Facebook</a></li></ul></div>
+    </div>
+    <div class="bottom"><span>© 2026 Chargerless Inc. All rights reserved. San Francisco, California.</span><span>Redesign concept by Jeremy Sleman · not the live site</span></div>
+  </div>
+</footer>
+</main>
+
+<div class="buybar" id="buybar"><span>Ray · from $219</span><a class="btn" href="#configure">Build yours</a></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="assets/js/site.js"></script>
+<script type="module" src="assets/js/ray3d.js"></script>
+</body>
+</html>
