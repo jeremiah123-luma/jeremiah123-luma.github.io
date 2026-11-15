@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fart-O-Meter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* Layout idea: a gas-hazard placard. One yellow sign, left aligned, read top to bottom:
+     black instrument face, then the culprit's name set as wide as the sign, then the paperwork.
+     Single theme by choice: the page is a caution sign in the safety color code
+     (yellow caution, red danger, green safe). */
+  :root {
+    --hazard: #f7cf12;
+    --hazard-deep: #b99700;
+    --ink: #000000;
+    --panel: #ffffff;
+    --danger: #c8102e;
+    --danger-lit: #ff4133;
+    --safe: #0b6b2e;
+    --dial-dim: #3d3d3d;
+    --dial-text: #b9b9b9;
+    --font-display: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--hazard);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.45;
+  }
+
+  .stripe {
+    height: 18px;
+    background: repeating-linear-gradient(-45deg, var(--ink) 0 13px, var(--hazard) 13px 26px);
+  }
+  .wrap {
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 22px 16px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(44px, 14vw, 60px);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  /* Instrument face */
+  .meter {
+    background: var(--ink);
+    color: #fff;
+    border-radius: 20px;
+    padding: 18px 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .dial { width: 100%; height: auto; display: block; }
+  .band { fill: none; stroke-width: 16; }
+  .band-dim { stroke: var(--dial-dim); }
+  .band-warn { stroke: var(--hazard); }
+  .band-danger { stroke: var(--danger-lit); }
+  .ticks { fill: none; }
+  .ticks-minor { stroke: #7d7d7d; stroke-width: 8; stroke-dasharray: 1.6 14.579; stroke-dashoffset: 0.8; }
+  .ticks-major { stroke: #fff; stroke-width: 14; stroke-dasharray: 2.4 78.495; stroke-dashoffset: 1.2; }
+  .dial text {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    fill: var(--dial-text);
+  }
+  .needle {
+    transform-origin: 160px 165px;
+    transform: rotate(90deg);
+    transition: transform 0.55s cubic-bezier(.3,1.6,.5,1);
+    animation: slam 1.5s cubic-bezier(.2,.8,.2,1) 0.2s backwards;
+  }
+  .needle polygon { fill: #fff; }
+  .hub { fill: var(--hazard); }
+  .hub-pin { fill: var(--ink); }
+  @keyframes slam {
+    0%   { transform: rotate(-90deg); }
+    55%  { transform: rotate(98deg); }
+    72%  { transform: rotate(86deg); }
+    86%  { transform: rotate(92deg); }
+    100% { transform: rotate(90deg); }
+  }
+
+  .readout { display: flex; align-items: center; gap: 14px; }
+  .num {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 68px;
+    line-height: 0.9;
+    font-variant-numeric: tabular-nums;
+    color: var(--hazard);
+    min-width: 3.1ch;
+  }
+  .readout-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .acc { font-family: var(--font-display); font-weight: 700; font-size: 26px; line-height: 1; }
+  .status { font-size: 14px; color: var(--dial-text); }
+
+  /* Verdict */
+  .verdict { display: flex; flex-direction: column; gap: 2px; }
+  .lead {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1;
+    margin: 0;
+  }
+  .name-box { container-type: inline-size; overflow: hidden; }
+  .name {
+    display: inline-block;
+    white-space: nowrap;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 26vw;
+    font-size: 29cqi;
+    line-height: 0.84;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    transform-origin: left center;
+  }
+  .name.stamp { animation: stamp 0.4s cubic-bezier(.2,1.4,.4,1); }
+  @keyframes stamp {
+    0% { transform: scale(1.14); }
+    100% { transform: scale(1); }
+  }
+
+  button {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--hazard);
+    background: var(--ink);
+    border: 0;
+    border-radius: 12px;
+    padding: 17px 18px;
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0 6px 0 var(--hazard-deep);
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+  }
+  button:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--hazard-deep); }
+  button:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+  button:disabled { cursor: progress; transform: translateY(4px); box-shadow: 0 2px 0 var(--hazard-deep); }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 1;
+    margin: 0 0 4px;
+  }
+
+  /* Lineup */
+  .suspects { list-style: none; margin: 0; padding: 0; }
+  .suspect {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 8px 12px;
+    padding: 12px 0 14px;
+    border-top: 2px solid var(--ink);
+  }
+  .suspect:last-child { border-bottom: 2px solid var(--ink); }
+  .who { font-family: var(--font-display); font-weight: 700; font-size: 26px; line-height: 1; }
+  .state { font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+  .state.cleared::before {
+    content: "";
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--safe);
+  }
+  .state.did-it {
+    background: var(--danger);
+    color: #fff;
+    padding: 3px 9px;
+    border-radius: 5px;
+  }
+  .pct {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    min-width: 3.4ch;
+    text-align: right;
+  }
+  .track {
+    grid-column: 1 / -1;
+    height: 16px;
+    border: 2px solid var(--ink);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .fill { height: 100%; width: 0%; background: var(--ink); transition: width 0.15s linear; }
+  .suspect.is-guilty .fill { background: var(--danger); }
+
+  /* Evidence tag */
+  .tag {
+    background: var(--panel);
+    border: 2px solid var(--ink);
+    border-radius: 12px;
+    padding: 4px 16px;
+  }
+  dl { margin: 0; }
+  dl div {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 11px 0;
+    border-bottom: 1px solid #d9d9d9;
+  }
+  dl div:last-child { border-bottom: 0; }
+  dt { font-size: 15px; }
+  dd { margin: 0; font-weight: 600; text-align: right; }
+
+  footer { font-size: 15px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .needle { animation: none; transition: none; }
+    .fill, button { transition: none; }
+    .name.stamp { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="stripe" aria-hidden="true"></div>
+<main class="wrap">
+
+  <h1>Fart-O-Meter</h1>
+
+  <section class="meter" aria-label="Meter reading">
+    <svg class="dial" viewBox="0 26 320 168" role="img" aria-label="Needle pinned at 100 percent, deep in the guilty zone">
+      <path class="band band-dim" d="M 35 165 A 125 125 0 0 1 198.63 46.11"/>
+      <path class="band band-warn" d="M 198.63 46.11 A 125 125 0 0 1 271.38 108.25"/>
+      <path class="band band-danger" d="M 271.38 108.25 A 125 125 0 0 1 285 165"/>
+      <path class="ticks ticks-minor" d="M 57 165 A 103 103 0 0 1 263 165"/>
+      <path class="ticks ticks-major" d="M 57 165 A 103 103 0 0 1 263 165"/>
+      <text x="82" y="146">0</text>
+      <text x="160" y="92" text-anchor="middle">50</text>
+      <text x="238" y="146" text-anchor="end">100</text>
+      <text x="27" y="189">clean</text>
+      <text x="293" y="189" text-anchor="end">guilty</text>
+      <g class="needle" id="needle">
+        <polygon points="160,50 155,165 165,165"/>
+      </g>
+      <circle class="hub" cx="160" cy="165" r="13"/>
+      <circle class="hub-pin" cx="160" cy="165" r="4"/>
+    </svg>
+    <div class="readout">
+      <span class="num" id="reading">100%</span>
+      <div class="readout-text">
+        <span class="acc">accuracy</span>
+        <span class="status" id="status" aria-live="polite">4 scanned, 1 match</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="verdict">
+    <p class="lead" id="lead">It was</p>
+    <div class="name-box"><span class="name" id="name">Johnny</span></div>
+  </section>
+
+  <button type="button" id="scan">Scan the room again</button>
+
+  <section aria-labelledby="lineup">
+    <h2 id="lineup">The lineup</h2>
+    <ul class="suspects">
+      <li class="suspect is-guilty" data-final="100">
+        <span class="who">Johnny</span>
+        <span class="state did-it">Did it</span>
+        <span class="pct">100%</span>
+        <div class="track"><div class="fill" style="width:100%"></div></div>
+      </li>
+      <li class="suspect" data-final="0">
+        <span class="who">Jeremy</span>
+        <span class="state cleared">Cleared</span>
+        <span class="pct">0%</span>
+        <div class="track"><div class="fill"></div></div>
+      </li>
+      <li class="suspect" data-final="0">
+        <span class="who">Philo</span>
+        <span class="state cleared">Cleared</span>
+        <span class="pct">0%</span>
+        <div class="track"><div class="fill"></div></div>
+      </li>
+      <li class="suspect" data-final="0">
+        <span class="who">Youseff</span>
+        <span class="state cleared">Cleared</span>
+        <span class="pct">0%</span>
+        <div class="track"><div class="fill"></div></div>
+      </li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="evidence">
+    <h2 id="evidence">The evidence</h2>
+    <div class="tag">
+      <dl>
+        <div><dt>Hydrogen sulfide peak</dt><dd>412 ppb at his seat</dd></div>
+        <div><dt>Where the cloud started</dt><dd>Johnny</dd></div>
+        <div><dt>Time to first denial</dt><dd>0.3 seconds</dd></div>
+        <div><dt>Eye contact</dt><dd>Avoided</dd></div>
+        <div><dt>Blamed someone else</dt><dd>Twice</dd></div>
+        <div><dt>Margin of error</dt><dd>0%</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <footer>The readings are a joke. Johnny still did it.</footer>
+
+</main>
+
+<script>
+(function () {
+  var needle = document.getElementById('needle');
+  var reading = document.getElementById('reading');
+  var status = document.getElementById('status');
+  var lead = document.getElementById('lead');
+  var nameEl = document.getElementById('name');
+  var button = document.getElementById('scan');
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.suspect'));
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var names = ['Jeremy', 'Philo', 'Youseff', 'Johnny'];
+  var steps = ['Sampling the air', 'Tracing the cloud', 'Checking who denied it first', 'Locking on'];
+
+  // Set the name as wide as the sign allows.
+  function fit() {
+    var box = nameEl.parentNode.clientWidth;
+    nameEl.style.fontSize = '100px';
+    var w = nameEl.offsetWidth;
+    if (w > 0 && box > 0) {
+      nameEl.style.fontSize = Math.min(190, Math.floor(100 * box / w * 0.985)) + 'px';
+    }
+  }
+  function showName(text) { nameEl.textContent = text; fit(); }
+
+  function setNeedle(pct) {
+    needle.style.transform = 'rotate(' + (-90 + pct * 1.8) + 'deg)';
+    reading.textContent = Math.round(pct) + '%';
+  }
+  function setRow(row, pct) {
+    row.querySelector('.fill').style.width = pct + '%';
+    row.querySelector('.pct').textContent = Math.round(pct) + '%';
+  }
+  function settle() {
+    setNeedle(100);
+    rows.forEach(function (row) { setRow(row, Number(row.dataset.final)); });
+    lead.textContent = 'It was';
+    showName('Johnny');
+    status.textContent = 'Scanned again. Still Johnny.';
+    button.disabled = false;
+    button.textContent = 'Scan the room again';
+  }
+
+  button.addEventListener('click', function () {
+    if (reduce) { settle(); return; }
+    needle.style.animation = 'none';
+    nameEl.classList.remove('stamp');
+    button.disabled = true;
+    button.textContent = 'Scanning';
+    lead.textContent = 'Could be';
+    var tick = 0;
+    var total = 18;
+    var timer = setInterval(function () {
+      status.textContent = steps[Math.min(steps.length - 1, Math.floor(tick / 5))];
+      showName(names[tick % names.length]);
+      setNeedle(12 + Math.random() * 70);
+      rows.forEach(function (row) { setRow(row, 10 + Math.random() * 60); });
+      tick += 1;
+      if (tick >= total) {
+        clearInterval(timer);
+        settle();
+        void nameEl.offsetWidth;
+        nameEl.classList.add('stamp');
+      }
+    }, 170);
+  });
+
+  fit();
+  window.addEventListener('resize', fit);
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(fit); }
+})();
+</script>
+</body>
+</html>
